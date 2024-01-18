@@ -49,7 +49,14 @@ void setup()
 }
 
 
+
 void loop()
 {
+    display.setPoint(playerCoords.x, playerCoords.y, true);
 
+    // read analog X and Y analog values of joystick
+    joystickInput.x = analogRead(VRX_PIN);
+    joystickInput.y = analogRead(VRY_PIN);
+
+    
 }
