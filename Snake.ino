@@ -34,7 +34,8 @@ Vector2 joystickInput = {}; // To store value of the X axis and Y axis of joysti
 Vector2 playerCoords = {};  // Stores coordinates of the player
 int command = COMMAND_NONE; // Will store the commands for the joystick 
 
-
+// Create a new instance of the MD_MAX72XX class with hardware SPI connection
+MD_MAX72XX display = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 void setup()
 {
