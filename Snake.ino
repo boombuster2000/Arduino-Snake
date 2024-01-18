@@ -1,3 +1,6 @@
+// Uses the MD_MAX72XX library to communicate with the MD_MAX72XX display. https://github.com/MajicDesigns/MD_MAX72XX
+
+
 #include "MD_MAX72xx.h"
 
 // Defining hardware, size, and output pins
