@@ -8,6 +8,9 @@
 #define DATA_PIN 11
 #define CLK_PIN 13
 
+// Defining joystick pins
+#define VRX_PIN  A0 // Arduino pin connected to VRX pin
+#define VRY_PIN  A1 // Arduino pin connected to VRY pin
 
 void setup(){
 
