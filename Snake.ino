@@ -1,4 +1,4 @@
-#include "libraries/MD_MAX72XX-3.5.1/src/MD_MAX72xx.h"
+#include "MD_MAX72xx.h"
 
 
 // Defining hardware, size, and output pins
