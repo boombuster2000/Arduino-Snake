@@ -25,10 +25,16 @@
 #define COMMAND_DOWN   0x08
 
 struct Vector2 
-// Struct to group X and Y coordinates
+// Struct to group X and Y values
 {
     int x = 0, y = 0;
 };
+
+Vector2 joystickInput = {}; // To store value of the X axis and Y axis of joystick
+Vector2 playerCoords = {};  // Stores coordinates of the player
+int command = COMMAND_NONE; // Will store the commands for the joystick 
+
+
 
 void setup()
 {
