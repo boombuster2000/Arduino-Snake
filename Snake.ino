@@ -24,11 +24,19 @@
 #define COMMAND_UP     0x04
 #define COMMAND_DOWN   0x08
 
-void setup(){
+struct Vector2 
+// Struct to group X and Y coordinates
+{
+    int x = 0, y = 0;
+};
+
+void setup()
+{
 
 }
 
 
-void loop(){
+void loop()
+{
 
 }
