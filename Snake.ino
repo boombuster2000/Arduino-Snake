@@ -39,7 +39,13 @@ MD_MAX72XX display = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DE
 
 void setup()
 {
+    Serial.begin(9600);
 
+    // Intialize the object
+    display.begin();
+
+    // Set the intensity (brightness) of the display (0-15)
+    display.control(MD_MAX72XX::controlRequest_t::INTENSITY, 0);
 }
 
 
