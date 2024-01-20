@@ -41,6 +41,7 @@ int command = COMMAND_NONE; // Will store the commands for the joystick
 MD_MAX72XX display = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 void setup()
+// This function is required to setup the pins and display.
 {
     Serial.begin(9600);
 
@@ -51,7 +52,25 @@ void setup()
     display.control(MD_MAX72XX::controlRequest_t::INTENSITY, 0);
 }
 
+int getCommand(Vector2 joystickInput)
+// This function converts the analog joystick input to commands. Each bit represents a command.
+{
+    // Reset commands
+    int command = COMMAND_NONE;
+
+    // Check left/right commands
+    if (joystickInput.x < LEFT_THRESHOLD) command |= COMMAND_LEFT;
+    else if (joystickInput.x > RIGHT_THRESHOLD) command |= COMMAND_RIGHT;
+
+    // Check up/down commands
+    if (joystickInput.y > UP_THRESHOLD) command |= COMMAND_UP;
+    else if (joystickInput.y < DOWN_THRESHOLD) command |= COMMAND_DOWN;
+
+    return command;
+}
+
 void loop()
+// Main program will run forever here.
 {
     display.clear();
     display.setPoint(playerCoords.x, playerCoords.y, true);
@@ -61,18 +80,7 @@ void loop()
     joystickInput.y = analogRead(VRY_PIN);
 
     // Converts the analog value to commands
-    // Reset commands
-    command = COMMAND_NONE;
-
-    // Check left/right commands
-    if (joystickInput.x < LEFT_THRESHOLD) command = command | COMMAND_LEFT;
-    else if (joystickInput.x > RIGHT_THRESHOLD) command = command | COMMAND_RIGHT;
-
-    // Check up/down commands
-    if (joystickInput.y > UP_THRESHOLD) command = command | COMMAND_UP;
-    else if (joystickInput.y < DOWN_THRESHOLD) command = command | COMMAND_DOWN;
-
-    // NOTE: AT A TIME, THERE MAY BE NO COMMAND, ONE COMMAND OR TWO COMMANDS
+    command = getCommand(joystickInput); // NOTE: AT A TIME, THERE MAY BE NO COMMAND, ONE COMMAND OR TWO COMMANDS
 
     // Print command to serial and process command
     if (command & COMMAND_LEFT)
