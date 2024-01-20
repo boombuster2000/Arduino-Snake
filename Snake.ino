@@ -3,6 +3,9 @@
 
 #include "MD_MAX72xx.h"
 
+#define DEBUG 0
+#define DEBUG_LOG(message) if (DEBUG) Serial.println(message)
+
 // Defining hardware, size, and output pins
 #define HARDWARE_TYPE MD_MAX72XX::moduleType_t::FC16_HW
 #define MAX_DEVICES 1 // no. of screens
@@ -43,7 +46,7 @@ MD_MAX72XX display = MD_MAX72XX(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DE
 void setup()
 // This function is required to setup the pins and display.
 {
-    Serial.begin(9600);
+    if (DEBUG) Serial.begin(9600);
 
     // Intialize the object
     display.begin();
@@ -85,7 +88,7 @@ void loop()
     // Print command to serial and process command
     if (command & COMMAND_LEFT)
     {
-        Serial.println("COMMAND LEFT");
+        DEBUG_LOG("COMMAND LEFT");
         if (0 < playerCoords.x)
         {
             playerCoords.x--;
@@ -94,7 +97,7 @@ void loop()
 
     if (command & COMMAND_RIGHT)
     {
-        Serial.println("COMMAND RIGHT");
+        DEBUG_LOG("COMMAND RIGHT");
         if (playerCoords.x < display.getColumnCount() - 1)
         {
             playerCoords.x++;
@@ -103,7 +106,7 @@ void loop()
 
     if (command & COMMAND_UP)
     {
-        Serial.println("COMMAND UP");
+        DEBUG_LOG("COMMAND UP");
         if (0 < playerCoords.y)
         {
             playerCoords.y--;
@@ -112,7 +115,7 @@ void loop()
 
     if (command & COMMAND_DOWN)
     {
-        Serial.println("COMMAND DOWN");
+        DEBUG_LOG("COMMAND DOWN");
         if (playerCoords.y < display.getColumnCount() - 1)
         {
             playerCoords.y++;
